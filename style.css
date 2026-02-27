@@ -165,3 +165,14 @@ footer {
         transform: translateY(0);
     }
 }
+
+.background-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.3), transparent 70%);
+    top: -200px;
+    right: -200px;
+    filter: blur(100px);
+    z-index: -1;
+}
