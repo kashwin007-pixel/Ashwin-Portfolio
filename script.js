@@ -1,17 +1,23 @@
-const sections = document.querySelectorAll(".section");
+// Navbar scroll effect
+window.addEventListener("scroll", function () {
+    const navbar = document.getElementById("navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = "translateY(0)";
+// Reveal animation on scroll
+const reveals = document.querySelectorAll(".reveal, .reveal-section");
+
+function revealOnScroll() {
+    reveals.forEach((el) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+            el.classList.add("active");
         }
     });
-}, { threshold: 0.2 });
+}
 
-sections.forEach(section => {
-    section.style.opacity = 0;
-    section.style.transform = "translateY(50px)";
-    section.style.transition = "all 0.8s ease";
-    observer.observe(section);
-});
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
